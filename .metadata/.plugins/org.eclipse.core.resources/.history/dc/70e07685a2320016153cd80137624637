@@ -1,0 +1,18 @@
+package com.app.jobapplication.chargebackexercise;
+
+import java.io.InputStream;
+import java.sql.Connection;
+
+import android.os.AsyncTask;
+
+public class RetrieveStream extends AsyncTask<String, Integer, InputStream>{
+
+	@Override
+	protected InputStream doInBackground(String... params) {
+		ConnectionHelper connection = new ConnectionHelper();
+		connection.getNotice();
+		connection.getChargeBack();
+		return null;
+	}
+
+}
