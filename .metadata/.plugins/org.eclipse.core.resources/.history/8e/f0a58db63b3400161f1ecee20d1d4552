@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ChargebackExercise</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_notice">NoticeActivity</string>
+    
+    <string name="formatted_html">
+	<![CDATA[
+	<p>This is a html-formatted string with <b>bold</b> and <i>italic</i> text</p>
+	<p>This is another paragraph of the same string.</p>
+	]]>
+	</string>
+
+</resources>

@@ -1,0 +1,35 @@
+package com.app.jobapplication.chargebackexercise;
+
+import java.io.InputStream;
+
+import android.os.AsyncTask;
+import android.util.Log;
+
+public class RetrieveStream extends AsyncTask<String, Integer, InputStream>{
+	
+	private static final String LOG = "<Async>RetrieveStream";
+	private AsyncResponse response; 
+	
+	/**
+	 * Constructor
+	 * @param response
+	 */
+	public RetrieveStream(AsyncResponse response) {
+		super();
+		this.response = response;
+	}
+
+	@Override
+	protected InputStream doInBackground(String... params) {
+		ConnectionHelper connection = new ConnectionHelper();
+		connection.getNotice();
+		connection.getChargeBack();
+		return null;
+	}
+	
+	protected void onPostExecute(InputStream result) {
+        Log.d(LOG, "Finished ");
+        response.processFinish(result);
+    }
+
+}

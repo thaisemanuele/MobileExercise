@@ -1,0 +1,32 @@
+package com.app.jobapplication.chargebackexercise;
+
+import java.io.IOException;
+import java.io.InputStream;
+
+import org.apache.commons.io.IOUtils;
+import org.json.JSONObject;
+
+public class RetrieveMessage {
+	
+	private static final String LOG = "<Async>RetrieveStream";
+	private static final String encoding = "UTF-8";
+	public String getNotice(){
+		
+		RetrieveStream notice = new RetrieveStream(new AsyncResponse() {
+			
+			@Override
+			public Void processFinish(InputStream result) {
+				if(result != null){
+					try {
+						String noticeString = IOUtils.toString(result, encoding);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					JSONObject noticeObj = null;
+				}
+				return null;
+			}
+		});
+	}
+}

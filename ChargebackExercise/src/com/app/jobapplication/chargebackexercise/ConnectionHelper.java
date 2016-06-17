@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -41,8 +40,6 @@ public class ConnectionHelper {
 			} catch (IOException e) {
 				Log.e(LOG, "Error on retrieving inputStream: "+connection.getErrorStream());
 			}
-			Log.i(LOG, noticeStream.toString());
-			connection.disconnect();
 			return noticeStream;
 		}
 		return null;	
@@ -57,8 +54,7 @@ public class ConnectionHelper {
 			} catch (IOException e) {
 				Log.e(LOG, "Error on retrieving inputStream: "+connection.getErrorStream());
 			}
-			Log.i(LOG, chargebackStream.toString());
-			connection.disconnect();
+			
 			return chargebackStream;
 		}
 		return null;	
