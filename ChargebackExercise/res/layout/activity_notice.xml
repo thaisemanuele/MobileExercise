@@ -27,7 +27,8 @@
             android:layout_width="match_parent"
             android:layout_height="282dp"
             android:background="#fdfdfd"
-            android:text="TextView" />
+            android:text="TextView"
+            android:typeface="sans" />
         
         <View
 		    android:layout_width="match_parent"
@@ -35,7 +36,7 @@
 		    android:background="@android:color/darker_gray"/>
 
         <TextView
-            android:id="@+id/notice_continue"
+            android:id="@+id/notice_action1"
             android:layout_width="match_parent"
             android:layout_height="86dp"
             android:background="#fdfdfd"
@@ -50,7 +51,7 @@
 		    android:background="@android:color/darker_gray"/>
         
         <TextView
-            android:id="@+id/notice_cancel"
+            android:id="@+id/notice_action2"
             android:layout_width="match_parent"
             android:layout_height="77dp"
             android:background="#fdfdfd"

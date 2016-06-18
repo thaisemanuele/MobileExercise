@@ -7,15 +7,16 @@ import java.net.URL;
 
 import javax.net.ssl.HttpsURLConnection;
 
+import org.apache.commons.io.IOUtils;
+
 import android.util.Log;
 
 public class ConnectionHelper {
 	
+	private static final String BASE_URL = "https://nu-mobile-hiring.herokuapp.com";
 	private static final String NOTICE_URL = "https://nu-mobile-hiring.herokuapp.com/notice";
-	private static final String CHARGEBACK_URL = "https://nu-mobile-hiring.herokuapp.com/chargeback";
-	private static final String BLOCKCARD_URL = "https://nu-mobile-hiring.herokuapp.com/card_block";
-	private static final String UNBLOCKCARD_URL = "https://nu-mobile-hiring.herokuapp.com/card_unblock";
 	
+	private static final String ENCODING = "UTF-8";
 	private static final String LOG = "ConnectionHelper";
 	
 	private HttpsURLConnection getConnection(String endpoint){
@@ -31,33 +32,23 @@ public class ConnectionHelper {
 		return null;
 	}
 	
-	public InputStream getNotice(){
-		HttpsURLConnection connection = getConnection(NOTICE_URL);
+	public String getFromEndpoint(String url){
+		if(url.isEmpty()){
+			url = NOTICE_URL;
+		}
+		HttpsURLConnection connection = getConnection(url);
 		if(connection!=null){
-			InputStream noticeStream = null;
+			String messageString = "";
+			InputStream messageStream = null;
 			try {
-				noticeStream = connection.getInputStream();
+				messageStream = connection.getInputStream();
+				messageString = IOUtils.toString(messageStream, ENCODING);
 			} catch (IOException e) {
 				Log.e(LOG, "Error on retrieving inputStream: "+connection.getErrorStream());
 			}
-			return noticeStream;
+			return messageString;
 		}
-		return null;	
+		return "";
 	}
 	
-	public InputStream getChargeBack(){
-		HttpsURLConnection connection = getConnection(CHARGEBACK_URL);
-		if(connection!=null){
-			InputStream chargebackStream = null;
-			try {
-				chargebackStream = connection.getInputStream();
-			} catch (IOException e) {
-				Log.e(LOG, "Error on retrieving inputStream: "+connection.getErrorStream());
-			}
-			
-			return chargebackStream;
-		}
-		return null;	
-	}
-
 }

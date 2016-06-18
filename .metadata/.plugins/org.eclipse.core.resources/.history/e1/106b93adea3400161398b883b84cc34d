@@ -1,0 +1,60 @@
+package com.app.jobapplication.chargebackexercise;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.app.JobApplication;
+
+import android.content.res.Resources;
+import android.gesture.GestureStore;
+import android.os.AsyncTask;
+import android.util.Log;
+
+public class RetrieveStream extends AsyncTask<String, Integer, String>{
+	
+	private static final String LOG = "<Async>RetrieveStream";
+	private AsyncResponse response; 
+	
+	/**
+	 * Constructor
+	 * @param response
+	 */
+	public RetrieveStream(AsyncResponse response) {
+		super();
+		this.response = response;
+	}
+
+	@Override
+	protected String doInBackground(String... params) {
+		ConnectionHelper connection = new ConnectionHelper();
+		String noticeString = connection.getNotice();
+		fillNoticeParams(noticeString);
+		return noticeString;
+		
+	}
+	
+	private void fillNoticeParams(String noticeString) {
+
+		Resources res = JobApplication.getAppContext().getResources();
+		try {
+			
+			JSONObject object = new JSONObject(noticeString);
+			String title = object.getString("title");
+			String description = object.getString("description");
+			String primary_action = object.getString("primary_action");
+			String secondary_action = object.getString("secondary_action");
+			String links = object.getString("links");
+			res.getString(R.string.notice_title).replace("stringPlaceholder", title);
+			
+		} catch (JSONException e) {
+			Log.e(LOG, "Error retrieving params from JSONString");
+		}
+		
+	}
+
+	protected void onPostExecute(String result) {
+        Log.d(LOG, "Finished ");
+        response.processFinish(result);
+    }
+
+}
