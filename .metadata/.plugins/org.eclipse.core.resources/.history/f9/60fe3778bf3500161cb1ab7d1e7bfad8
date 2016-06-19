@@ -1,0 +1,54 @@
+package com.app.jobapplication.chargebackexercise;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import android.os.AsyncTask;
+import android.util.Log;
+
+public class RetrieveStream extends AsyncTask<String, Integer, String>{
+	
+	private static final String LOG = "<Async>RetrieveStream";
+	private AsyncResponse response; 
+	
+	/**
+	 * Constructor
+	 * @param response
+	 */
+	public RetrieveStream(AsyncResponse response) {
+		super();
+		this.response = response;
+	}
+
+	@Override
+	protected String doInBackground(String... params) {
+		ConnectionHelper connection = new ConnectionHelper();
+		try {
+			ConnectionHelper.post("https://nu-mobile-hiring.herokuapp.com/chargeback",
+					new JSONObject("{"
+			    +"\"comment\": \"Estava Viajando em outra cidade\","
+			    + "\"reason_details\": ["
+			    		+"{"
+			        +"\"id\": \"merchant_recognized\","
+			        +"\"response\": false"
+			    +"},"
+			    +"{"
+			        +"\"id\": \"card_in_possession\","
+			        +"\"response\": true"
+			    +"}]"
+			+"}")
+			   );
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String noticeString = connection.getFromEndpoint(params[0]);
+		return noticeString;
+	}
+
+	protected void onPostExecute(String result) {
+        Log.d(LOG, "Finished ");
+        response.processFinish(result);
+    }
+
+}

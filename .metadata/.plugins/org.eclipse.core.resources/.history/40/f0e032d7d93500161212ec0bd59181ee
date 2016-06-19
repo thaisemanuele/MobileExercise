@@ -1,0 +1,135 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/FrameLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fdfdfd"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.app.jobapplication.activities.ChargebackActivity" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/chargeback_title"
+            android:layout_width="match_parent"
+            android:layout_height="43dp"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="Medium Text"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <View
+            android:layout_width="372dp"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="61dp" >
+
+                <ImageView
+                    android:id="@+id/chargeback_padlock"
+                    android:layout_width="wrap_content"
+                    android:layout_height="28dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_chargeback_unlock" />
+
+                <TextView
+                    android:id="@+id/chargeback_lock_message"
+                    android:layout_width="266dp"
+                    android:layout_height="57dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/chargeback_card_unblocked" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/chargeback_reason1"
+                    android:layout_width="216dp"
+                    android:layout_height="match_parent"
+                    android:text="TextView" />
+
+                <Switch
+                    android:id="@+id/reason_button1"
+                    android:layout_height="37dp"
+                    android:thumb="@drawable/ic_btn_circle_normal"
+                    android:track="@drawable/ic_track_selected" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/chargeback_reason2"
+                    android:layout_height="match_parent"
+                    android:text="TextView" />
+
+                <Switch
+                    android:id="@+id/reason_button2"
+                    android:layout_height="35dp"
+                    android:layout_weight="0.73"
+                    android:thumb="@drawable/ic_btn_circle_normal"
+                    android:track="@drawable/ic_track_selected" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray" />
+
+            <EditText
+                android:id="@+id/chargeback_comments"
+                android:layout_width="match_parent"
+                android:layout_height="219dp"
+                android:ems="10"
+                android:hint="@string/hello_world"
+                android:singleLine="false"
+                android:text="TextView" >
+
+                <requestFocus />
+            </EditText>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="90dp" >
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="0.28"
+                    android:gravity="center_vertical"
+                    android:text="Medium Text"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="156dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical|right"
+                    android:text="Medium Text"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

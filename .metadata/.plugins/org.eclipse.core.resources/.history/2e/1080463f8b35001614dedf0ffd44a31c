@@ -1,0 +1,5 @@
+package com.app.jobapplication.models.vo;
+
+public class NoticeVO {
+
+}

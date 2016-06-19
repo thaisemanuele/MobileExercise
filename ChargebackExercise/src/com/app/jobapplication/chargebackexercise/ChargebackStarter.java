@@ -25,6 +25,12 @@ public class ChargebackStarter {
 					startChargebackActivity(chargeString);
 				}
 			}
+
+			@Override
+			public void processFinish(Boolean result) {
+				
+				
+			}
 			
 		});
 		charge.execute(url);

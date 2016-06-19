@@ -26,6 +26,12 @@ public class NoticeStarter {
 				}
 			}
 
+			@Override
+			public void processFinish(Boolean result) {
+				// TODO Auto-generated method stub
+				
+			}
+
 			
 		});
 		notice.execute("");

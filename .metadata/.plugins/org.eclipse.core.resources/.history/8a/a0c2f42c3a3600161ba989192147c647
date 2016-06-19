@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ChargebackExercise</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_notice">NoticeActivity</string>
+    <string name="title_activity_chargeback">NoticeActivity</string>
+    <string name="formatted_html">
+<![CDATA[
+		%1$s
+	]]>
+    </string>
+    <string name="chargeback_card_blocked">Bloqueamos preventivamente o seu cartão</string>
+    <string name="chargeback_card_unblocked">
+        Cartão desbloqueado, recomendamos mantê-lo bloqueado</string>
+	<string name="chargeback_confirm_title">Contestação de compra recebida</string>
+	<string name="chargeback_confirm_message">
+	    Fique de olho no seu email! Nos próximos 3 dias você deverá receber 
+	    um primeiro retorno sobre sua contestação</string>
+    <string name="chargeback_cancel">CANCELAR</string>
+	<string name="chargeback_confirm">CONTESTAR</string>
+	<string name="chargeback_confirm_close">FECHAR</string>
+	
+</resources>

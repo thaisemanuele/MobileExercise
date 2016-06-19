@@ -1,13 +1,18 @@
 package com.app.jobapplication.chargebackexercise;
 
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStreamWriter;
 import java.net.MalformedURLException;
+import java.net.ProtocolException;
 import java.net.URL;
+import java.net.URLEncoder;
 
 import javax.net.ssl.HttpsURLConnection;
 
 import org.apache.commons.io.IOUtils;
+import org.json.JSONObject;
 
 import android.util.Log;
 
@@ -19,7 +24,7 @@ public class ConnectionHelper {
 	private static final String ENCODING = "UTF-8";
 	private static final String LOG = "ConnectionHelper";
 	
-	private HttpsURLConnection getConnection(String endpoint){
+	private static HttpsURLConnection getConnection(String endpoint){
 		try {
 			URL url = new URL(endpoint);
 			HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
@@ -32,7 +37,7 @@ public class ConnectionHelper {
 		return null;
 	}
 	
-	public String getFromEndpoint(String url){
+	public static String getFromEndpoint(String url){
 		if(url.isEmpty()){
 			url = NOTICE_URL;
 		}
@@ -49,6 +54,38 @@ public class ConnectionHelper {
 			return messageString;
 		}
 		return "";
+	}
+	
+	public static boolean post(String url, String json){
+		HttpsURLConnection connection = getConnection(url);
+		connection.setDoInput(true);
+		connection.setDoOutput(true);
+		
+		try {
+			
+			connection.setRequestMethod("POST");
+			connection.setRequestProperty("Content-Type", "application/json");
+			connection.setRequestProperty("Accept", "application/json");
+			DataOutputStream outputstream = new DataOutputStream(
+					connection.getOutputStream());
+			OutputStreamWriter writer = new OutputStreamWriter(outputstream, ENCODING);
+			writer.write(json);
+			writer.flush ();
+			writer.close ();
+			int response = connection.getResponseCode();  
+		    if(response ==HttpsURLConnection.HTTP_OK){  
+		    	Log.e(LOG, "OK");
+		    	return true; 
+
+		    }else{  
+		    	Log.e(LOG, "ESSE ERRO"+connection.getResponseMessage());
+		        return false;  
+		    }  
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
 	}
 	
 }

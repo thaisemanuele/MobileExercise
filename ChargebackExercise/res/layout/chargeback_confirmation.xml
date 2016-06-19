@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fdfdfd"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/chargeback_dialogue_title"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="#fdfdfd"
+        android:gravity="center_vertical|center_horizontal"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:text="@string/chargeback_confirm_title"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#6e2b77" />
+
+    <TextView
+        android:id="@+id/chargeback_dialogue_message"
+        android:layout_width="match_parent"
+        android:layout_height="102dp"
+        android:background="#fdfdfd"
+        android:gravity="top|center_horizontal"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:paddingTop="10dp"
+        android:text="@string/chargeback_confirm_message"
+        android:textColor="#222222"
+        android:typeface="sans" />
+
+    <TextView
+        android:id="@+id/chargeback_dialogue_close"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#fdfdfd"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="@string/chargeback_confirm_close"
+        android:textColor="#808191" />
+
+</LinearLayout>

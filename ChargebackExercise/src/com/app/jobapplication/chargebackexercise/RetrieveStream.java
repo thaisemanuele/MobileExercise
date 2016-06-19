@@ -19,8 +19,8 @@ public class RetrieveStream extends AsyncTask<String, Integer, String>{
 
 	@Override
 	protected String doInBackground(String... params) {
-		ConnectionHelper connection = new ConnectionHelper();
-		String noticeString = connection.getFromEndpoint(params[0]);
+		
+		String noticeString = ConnectionHelper.getFromEndpoint(params[0]);
 		return noticeString;
 	}
 
@@ -28,5 +28,5 @@ public class RetrieveStream extends AsyncTask<String, Integer, String>{
         Log.d(LOG, "Finished ");
         response.processFinish(result);
     }
-
+	
 }

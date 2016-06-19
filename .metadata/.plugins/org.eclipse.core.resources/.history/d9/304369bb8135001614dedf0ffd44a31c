@@ -1,0 +1,110 @@
+package com.app.jobapplication.models.vo;
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.app.jobapplication.helper.StringPair;
+
+import android.util.Log;
+
+public class ChargebackVO {
+	
+	private String id;
+	private String title;
+	private String commentHint;
+	private Boolean autoblock;
+	private Map<String, StringPair> reasonDetails;
+	private Map<String, StringPair> links;
+	
+	private static final String LOG = "ChargebackVO";
+
+	
+	public ChargebackVO(JSONObject object){
+		
+		try {
+			
+			this.id = object.getString("id");
+			this.title = object.getString("title");
+			this.commentHint = object.getString("comment_hint");
+			this.autoblock = Boolean.parseBoolean(object.getString("autoblock"));
+			
+			JSONArray reasonArray = object.getJSONArray("reason_details");
+			JSONObject linksObject = object.getJSONObject("links");
+			
+			this.reasonDetails = parseReasonDetails(reasonArray);
+			this.links = parseLinks(linksObject);
+			
+		} catch (JSONException e) {
+			Log.e(LOG, "Error parsing JSON");
+		}	
+	}
+
+	private Map<String, StringPair> parseReasonDetails(JSONArray reasonArray) {
+
+		Map<String, StringPair> map = new HashMap<String, StringPair>();
+
+		for (int index = 0; index < reasonArray.length(); index++) {
+			JSONObject obj;
+			try {
+				obj = reasonArray.getJSONObject(index);
+				String id = obj.getString("id");
+				String title = obj.getString("title");
+				StringPair value = new StringPair(id, title);
+				map.put(id, value);
+			} catch (JSONException e) {
+				Log.e(LOG, "Error retrieving reason_details from JSONObject");
+			}
+		}
+		return map;
+	}
+	
+	private Map<String, StringPair> parseLinks(JSONObject linksObject) {
+
+		Map<String, StringPair> map = new HashMap<String, StringPair>();
+			try {
+				Iterator<String> keys = linksObject.keys();
+				while(keys.hasNext()){
+					String key = keys.next();
+					JSONObject hrefObj = linksObject.getJSONObject(key);
+					String innerkey = hrefObj.keys().next();
+					String innervalue = hrefObj.getString(innerkey);
+					StringPair value = new StringPair(innerkey, innervalue);
+					map.put(key, value);
+				}
+			} catch (JSONException e) {
+				Log.e(LOG, "Error retrieving links from JSONObject");
+			}
+		return map;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public String getCommentHint() {
+		return commentHint;
+	}
+
+	public Boolean getAutoblock() {
+		return autoblock;
+	}
+
+	public Map<String, StringPair> getReasonDetails() {
+		return reasonDetails;
+	}
+
+	public Map<String, StringPair> getLinks() {
+		return links;
+	}
+	
+
+}

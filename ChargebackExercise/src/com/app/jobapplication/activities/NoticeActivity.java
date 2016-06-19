@@ -1,10 +1,13 @@
 package com.app.jobapplication.activities;
 
+import java.util.Locale;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.app.jobapplication.chargebackexercise.ChargebackStarter;
 import com.app.jobapplication.chargebackexercise.R;
+import com.app.jobapplication.models.vo.NoticeVO;
 
 import android.app.Activity;
 import android.content.res.Resources;
@@ -39,17 +42,16 @@ public class NoticeActivity extends Activity {
    			JSONObject jsonobject = null;
    			try {
 				jsonobject = new JSONObject(message);
+				Resources res = getResources();
+				fillNoticeScreen(res, jsonobject);
 			} catch (JSONException e) {
 				Log.e(LOG, "Error parsing "+message);
 				jsonobject = new JSONObject();
 			}
-			Resources res = getResources();
-			fillNoticeScreen(res, jsonobject);
-			
 		}
 	}
 
-	private void fillNoticeScreen(Resources res, final JSONObject jsonobject) {
+	private void fillNoticeScreen(Resources res, final JSONObject jsonobject) throws JSONException {
 		
 		/*TextView to show notice title*/
 		TextView noticeTitle = (TextView)this.findViewById(R.id.notice_title);
@@ -77,35 +79,30 @@ public class NoticeActivity extends Activity {
 				
 			}
 		});
-		
 		/*TextView for Secondary Action*/
 		TextView secondaryAction = (TextView) this.findViewById(R.id.notice_action2);
+		secondaryAction.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				if(v.getTag()!=null && v.getTag().toString().equalsIgnoreCase("cancel")){
+					finish();
+				}
+				
+			}
+		});
 		
-		try {
-			/** JSONObject Values*/
-			JSONObject primary_action = jsonobject.getJSONObject("primary_action");
-			JSONObject secondary_action = jsonobject.getJSONObject("secondary_action");
-			JSONObject links = jsonobject.getJSONObject("links");
-			
-			String title = jsonobject.getString("title");
-			String description = jsonobject.getString("description");
-			String action1 = primary_action.getString("action");
-			String action2 = secondary_action.getString("action");
-			String action1_title = primary_action.getString("title");
-			String action2_title = secondary_action.getString("title");
-			String formatted = String.format(res.getString(R.string.formatted_html), description);
-			
-			/** Setting texts to Views*/
-			noticeTitle.setText(title);
-			noticeField.setText(Html.fromHtml(formatted));
-			primaryAction.setText(action1_title.toUpperCase());
-			secondaryAction.setText(action2_title.toUpperCase());
-			primaryAction.setTag(action1);
-			secondaryAction.setTag(action2);
-			
-		} catch (JSONException e) {
-			Log.e(LOG, "Error getting description");
-		}
+		NoticeVO notice = new NoticeVO(jsonobject);
+		String formatted = String.format(
+				res.getString(R.string.formatted_html), notice.getDescription());
+		
+		/** Setting texts to Views*/
+		noticeTitle.setText(notice.getTitle());
+		noticeField.setText(Html.fromHtml(formatted));
+		primaryAction.setText(notice.getPrimarybyKey("title").toUpperCase(Locale.getDefault()));
+		secondaryAction.setText(notice.getSecondarybyKey("title").toUpperCase(Locale.getDefault()));
+		primaryAction.setTag(notice.getPrimarybyKey("action"));
+		secondaryAction.setTag(notice.getSecondarybyKey("action"));
 	}
 
 	@Override
@@ -125,20 +122,5 @@ public class NoticeActivity extends Activity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
-	}
-
-	/**
-	 * A placeholder fragment containing a simple view.
-	 */
-	public static class PlaceholderFragment extends Fragment {
-
-		public PlaceholderFragment() {
-		}
-
-		@Override
-		public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_notice, container, false);
-			return rootView;
-		}
 	}
 }

@@ -1,7 +1,5 @@
 package com.app.jobapplication.chargebackexercise;
 
-import java.io.InputStream;
-
 /**
  * This interface is implemented by the class that needs a response from 
  * processes running in concurrency. Whenever a thread finishes and needs to 
@@ -14,4 +12,6 @@ import java.io.InputStream;
 public interface AsyncResponse {
 
 	void processFinish(String result);
+
+	void processFinish(Boolean result);
 }

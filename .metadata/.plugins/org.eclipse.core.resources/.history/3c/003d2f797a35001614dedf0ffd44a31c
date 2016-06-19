@@ -1,0 +1,5 @@
+package com.app.jobapplication.helper;
+
+public class StringPair {
+
+}
