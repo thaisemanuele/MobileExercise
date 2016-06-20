@@ -178,36 +178,39 @@ public final class R {
         public static final int ic_launcher=0x7f020003;
         public static final int ic_track_selected=0x7f020004;
         public static final int ic_track_unselected=0x7f020005;
+        public static final int shape_background=0x7f020006;
     }
     public static final class id {
-        public static final int FrameLayout1=0x7f090000;
-        public static final int action_settings=0x7f090013;
-        public static final int chargeback_cancel=0x7f090009;
-        public static final int chargeback_comments=0x7f090008;
-        public static final int chargeback_confirm=0x7f09000a;
-        public static final int chargeback_dialogue_close=0x7f090012;
-        public static final int chargeback_dialogue_message=0x7f090011;
-        public static final int chargeback_dialogue_title=0x7f090010;
-        public static final int chargeback_lock_message=0x7f090003;
-        public static final int chargeback_padlock=0x7f090002;
-        public static final int chargeback_reason1=0x7f090004;
-        public static final int chargeback_reason2=0x7f090006;
-        public static final int chargeback_title=0x7f090001;
-        public static final int container=0x7f09000b;
-        public static final int notice_action1=0x7f09000e;
-        public static final int notice_action2=0x7f09000f;
-        public static final int notice_description=0x7f09000d;
-        public static final int notice_title=0x7f09000c;
-        public static final int reason_button1=0x7f090005;
-        public static final int reason_button2=0x7f090007;
+        public static final int action_settings=0x7f090014;
+        public static final int chargeback_cancel=0x7f09000a;
+        public static final int chargeback_comments=0x7f090009;
+        public static final int chargeback_confirm=0x7f09000b;
+        public static final int chargeback_dialogue_close=0x7f090013;
+        public static final int chargeback_dialogue_message=0x7f090012;
+        public static final int chargeback_dialogue_title=0x7f090011;
+        public static final int chargeback_frame=0x7f090001;
+        public static final int chargeback_lock_message=0x7f090004;
+        public static final int chargeback_padlock=0x7f090003;
+        public static final int chargeback_reason1=0x7f090005;
+        public static final int chargeback_reason2=0x7f090007;
+        public static final int chargeback_title=0x7f090002;
+        public static final int container=0x7f09000c;
+        public static final int notice_action1=0x7f09000f;
+        public static final int notice_action2=0x7f090010;
+        public static final int notice_description=0x7f09000e;
+        public static final int notice_title=0x7f09000d;
+        public static final int progressBar1=0x7f090000;
+        public static final int reason_button1=0x7f090006;
+        public static final int reason_button2=0x7f090008;
     }
     public static final class layout {
-        public static final int activity_chargeback=0x7f030000;
-        public static final int activity_main=0x7f030001;
-        public static final int activity_notice=0x7f030002;
-        public static final int chargeback_confirmation=0x7f030003;
-        public static final int fragment_main=0x7f030004;
-        public static final int fragment_notice=0x7f030005;
+        public static final int action_processing=0x7f030000;
+        public static final int activity_chargeback=0x7f030001;
+        public static final int activity_main=0x7f030002;
+        public static final int activity_notice=0x7f030003;
+        public static final int chargeback_confirmation=0x7f030004;
+        public static final int fragment_main=0x7f030005;
+        public static final int fragment_notice=0x7f030006;
     }
     public static final class menu {
         public static final int chargeback=0x7f080000;
@@ -217,13 +220,14 @@ public final class R {
     public static final class string {
         public static final int action_settings=0x7f060002;
         public static final int app_name=0x7f060000;
-        public static final int chargeback_cancel=0x7f06000a;
+        public static final int chargeback_cancel=0x7f06000b;
         public static final int chargeback_card_blocked=0x7f060006;
         public static final int chargeback_card_unblocked=0x7f060007;
-        public static final int chargeback_confirm=0x7f06000b;
-        public static final int chargeback_confirm_close=0x7f06000c;
+        public static final int chargeback_confirm=0x7f06000c;
+        public static final int chargeback_confirm_close=0x7f06000d;
         public static final int chargeback_confirm_message=0x7f060009;
         public static final int chargeback_confirm_title=0x7f060008;
+        public static final int error_request=0x7f06000a;
         public static final int formatted_html=0x7f060005;
         public static final int hello_world=0x7f060001;
         public static final int title_activity_chargeback=0x7f060004;

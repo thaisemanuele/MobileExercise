@@ -1,0 +1,62 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.app.jobapplication.activities.NoticeActivity"
+    tools:ignore="MergeRootFrame" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/notice_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Medium Text"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/notice_description"
+            android:layout_width="match_parent"
+            android:layout_height="282dp"
+            android:background="#fdfdfd"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:text="TextView"
+            android:textSize="18sp"
+            android:typeface="sans" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/notice_action1"
+            android:layout_width="match_parent"
+            android:layout_height="77dp"
+            android:background="#fdfdfd"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="TextView"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#6e2b77" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/notice_action2"
+            android:layout_width="match_parent"
+            android:layout_height="77dp"
+            android:background="#fdfdfd"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="TextView" />
+    </LinearLayout>
+    
+</FrameLayout>
+

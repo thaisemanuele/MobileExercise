@@ -32,7 +32,7 @@ public class ChargebackVO {
 			this.title = object.getString("title");
 			this.commentHint = object.getString("comment_hint");
 			this.autoblock = Boolean.parseBoolean(object.getString("autoblock"));
-			this.blockStatus = autoblock;
+			this.blockStatus = false;
 			
 			JSONArray reasonArray = object.getJSONArray("reason_details");
 			JSONObject linksObject = object.getJSONObject("links");

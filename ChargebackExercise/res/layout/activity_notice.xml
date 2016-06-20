@@ -15,22 +15,25 @@
             android:id="@+id/notice_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1.85"
-            android:background="#fdfdfd"
+            android:background="@color/RequiredBackground"
             android:gravity="center_vertical|center_horizontal"
-            android:text="Large Text"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="#6e2b77" />
+            android:paddingBottom="15dp"
+            android:paddingTop="15dp"
+            android:text="Medium Text"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/RequiredPurple"
+            android:textSize="25sp" />
 
         <TextView
             android:id="@+id/notice_description"
             android:layout_width="match_parent"
-            android:layout_height="282dp"
+            android:layout_height="216dp"
+            android:layout_weight="1.06"
             android:background="#fdfdfd"
+            android:lineSpacingExtra="5dp"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
-            android:text="TextView"
-            android:textSize="18sp"
+            android:textSize="17sp"
             android:typeface="sans" />
 
         <View
@@ -41,12 +44,13 @@
         <TextView
             android:id="@+id/notice_action1"
             android:layout_width="match_parent"
-            android:layout_height="77dp"
+            android:layout_height="90dp"
             android:background="#fdfdfd"
             android:gravity="center_vertical|center_horizontal"
             android:text="TextView"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="#6e2b77" />
+            android:textColor="@color/RequiredPurple"
+            android:textSize="18sp" />
 
         <View
             android:layout_width="match_parent"
@@ -56,10 +60,10 @@
         <TextView
             android:id="@+id/notice_action2"
             android:layout_width="match_parent"
-            android:layout_height="77dp"
+            android:layout_height="90dp"
             android:background="#fdfdfd"
-            android:gravity="center_vertical|center_horizontal"
-            android:text="TextView" />
+            android:gravity="center_vertical|center_horizontal" />
+
     </LinearLayout>
     
 </FrameLayout>

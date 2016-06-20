@@ -18,6 +18,7 @@
 	<string name="chargeback_confirm_message">
 	    Fique de olho no seu email! Nos próximos 3 dias você deverá receber 
 	    um primeiro retorno sobre sua contestação.</string>
+	<string name="error_request">Operação não pode ser completada.</string>
     <string name="chargeback_cancel">CANCELAR</string>
 	<string name="chargeback_confirm">CONTESTAR</string>
 	<string name="chargeback_confirm_close">FECHAR</string>

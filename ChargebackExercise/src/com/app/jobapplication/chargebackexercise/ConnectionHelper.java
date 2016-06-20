@@ -50,6 +50,7 @@ public class ConnectionHelper {
 				messageString = IOUtils.toString(messageStream, ENCODING);
 			} catch (IOException e) {
 				Log.e(LOG, "Error on retrieving inputStream: "+connection.getErrorStream());
+				return null;
 			}
 			return messageString;
 		}
@@ -78,7 +79,7 @@ public class ConnectionHelper {
 		    	return true; 
 
 		    }else{  
-		    	Log.e(LOG, "ESSE ERRO"+connection.getResponseMessage());
+		    	Log.e(LOG, connection.getResponseMessage());
 		        return false;  
 		    }  
 		} catch (IOException e) {

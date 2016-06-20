@@ -18,7 +18,7 @@ public class RetrieveStream extends AsyncTask<String, Integer, String>{
 	}
 
 	@Override
-	protected String doInBackground(String... params) {
+	public String doInBackground(String... params) {
 		
 		String noticeString = ConnectionHelper.getFromEndpoint(params[0]);
 		return noticeString;
