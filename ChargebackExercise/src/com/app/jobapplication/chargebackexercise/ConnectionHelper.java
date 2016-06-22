@@ -35,13 +35,11 @@ public class ConnectionHelper {
 		return null;
 	}
 	
-	public static String getStream(String url) {
-		if(url.isEmpty()){
-			url = BASE_URL;
+	public static String getStream() {
+			String url = BASE_URL;
 			HttpsURLConnection connection = getConnection(url);
 			String retrieved = "";
 			if (connection != null) {
-				String messageString = "";
 				InputStream messageStream = null;
 				try {
 					messageStream = connection.getInputStream();
@@ -51,13 +49,12 @@ public class ConnectionHelper {
 					Log.e(LOG, "Error on retrieving inputStream: " + connection.getErrorStream());
 					return null;
 				}
+				String innerUrl = JsonParser.getInnerUrl(retrieved);
+				return getFromEndpoint(innerUrl);
 			}
-			String innerUrl = JsonParser.getInnerUrl(retrieved);
-			return getFromEndpoint(innerUrl);
+			return null;
 		}
-		else return getFromEndpoint(url);
-				
-	}
+		
 	
 	public static String getFromEndpoint(String url){
 		HttpsURLConnection connection = getConnection(url);

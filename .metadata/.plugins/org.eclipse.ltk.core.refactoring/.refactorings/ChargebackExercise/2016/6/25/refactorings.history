@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Change Layout" description="Change Layout" file="/ChargebackExercise/res/layout/activity_chargeback.xml" flags="6" flatten="true" id="com.android.ide.eclipse.adt.refactoring.convert" proj="/ChargebackExercise" sel-end="6442" sel-start="5095" stamp="1466560006365" type="android.widget.RelativeLayout"/>
+</session>

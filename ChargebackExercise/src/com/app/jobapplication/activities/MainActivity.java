@@ -1,15 +1,7 @@
 package com.app.jobapplication.activities;
 
-import java.util.Map;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import com.app.jobapplication.chargebackexercise.JsonParser;
 import com.app.jobapplication.chargebackexercise.NoticeStarter;
 import com.app.jobapplication.chargebackexercise.R;
-import com.app.jobapplication.chargebackexercise.Starter;
-import com.app.jobapplication.helper.StringPair;
 import com.app.jobapplication.utils.ApplicationUtils;
 
 import android.app.Activity;

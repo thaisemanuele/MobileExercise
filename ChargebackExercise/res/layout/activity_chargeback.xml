@@ -21,9 +21,9 @@
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <View
-		    android:layout_width="match_parent"
-		    android:layout_height="1dp"
-		    android:background="@android:color/darker_gray"/>
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -48,13 +48,12 @@
                     android:gravity="center_vertical"
                     android:text="@string/chargeback_card_unblocked"
                     android:textColor="#d5171b" />
-
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="42dp"
-                android:weightSum="1">
+                android:weightSum="1" >
 
                 <TextView
                     android:id="@+id/chargeback_reason1"
@@ -76,7 +75,6 @@
                     android:showText="false"
                     android:thumb="@drawable/ic_btn_circle_normal"
                     android:track="@drawable/ic_track_unselected" />
-
             </LinearLayout>
 
             <LinearLayout
@@ -102,11 +100,6 @@
                     android:showText="false"
                     android:thumb="@drawable/ic_btn_circle_normal"
                     android:track="@drawable/ic_track_unselected" />
-
-                <FrameLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"></FrameLayout>
-
             </LinearLayout>
 
             <View
@@ -117,7 +110,7 @@
             <EditText
                 android:id="@+id/chargeback_comments"
                 android:layout_width="match_parent"
-                android:layout_height="253dp"
+                android:layout_height="275dp"
                 android:background="@android:drawable/editbox_background_normal"
                 android:ems="10"
                 android:gravity="top"
@@ -126,39 +119,42 @@
                 <requestFocus />
             </EditText>
 
-            <LinearLayout
+            <RelativeLayout
+                android:id="@+id/RelativeLayout1"
                 android:layout_width="match_parent"
                 android:layout_height="90dp"
-                android:weightSum="1">
+                android:weightSum="1" >
 
                 <TextView
                     android:id="@+id/chargeback_cancel"
                     android:layout_width="wrap_content"
                     android:layout_height="52dp"
+                    android:layout_alignBottom="@+id/chargeback_confirm"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
                     android:layout_marginLeft="10dp"
+                    android:layout_weight="0.59"
                     android:gravity="center_vertical"
                     android:paddingLeft="15dp"
                     android:text="Medium Text"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="#808191"
-                    android:layout_weight="0.59" />
+                    android:textColor="#808191" />
 
                 <TextView
                     android:id="@+id/chargeback_confirm"
                     android:layout_width="139dp"
                     android:layout_height="51dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
                     android:layout_marginRight="10dp"
+                    android:layout_weight="0.35"
                     android:gravity="center_vertical|right"
                     android:paddingRight="15dp"
                     android:text="Medium Text"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="#6e2b77"
-                    android:layout_weight="0.35" />
-
-            </LinearLayout>
-
+                    android:textColor="#6e2b77" />
+            </RelativeLayout>
         </LinearLayout>
-
     </LinearLayout>
 
 </FrameLayout>

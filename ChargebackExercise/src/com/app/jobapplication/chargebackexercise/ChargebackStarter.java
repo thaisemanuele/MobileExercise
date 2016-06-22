@@ -16,7 +16,7 @@ public class ChargebackStarter {
 	 */
 	public void startChargeback(String url){
 		
-		RetrieveStream charge = new RetrieveStream(new AsyncResponse() {
+		RetrieveChargebackStream charge = new RetrieveChargebackStream(new AsyncResponse() {
 			
 			@Override
 			public void processFinish(String result) {

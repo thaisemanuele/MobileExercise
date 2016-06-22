@@ -21,7 +21,7 @@ public class RetrieveStream extends AsyncTask<String, Integer, String>{
 	public String doInBackground(String... params) {
 		
 		String noticeString = "";
-		noticeString = ConnectionHelper.getStream(params[0]);
+		noticeString = ConnectionHelper.getStream();
 		return noticeString;
 	}
 
