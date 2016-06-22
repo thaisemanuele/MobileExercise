@@ -1,0 +1,63 @@
+package com.app.jobapplication.chargebackexercise;
+
+import java.util.Map;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.app.jobapplication.helper.StringPair;
+import com.app.jobapplication.utils.ApplicationUtils;
+
+public class Starter {
+	
+	private static final String LOG = "NoticeStarter";
+	private String startString;
+	
+	/**
+	 * Start
+	 * SUCCESS: Receive the results of the Async Task 
+	 */
+	public void start(){
+		
+		RetrieveStream start = new RetrieveStream(new AsyncResponse() {
+			
+			@Override
+			public void processFinish(String result) {
+				if(result != null){
+					String start = result;
+					startString = start;
+				}
+			}
+
+			@Override
+			public void processFinish(Boolean result) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			
+		});
+		start.execute("");
+	}
+	
+	public String getStartString(){
+		if(startString!=null && !startString.isEmpty()){
+            try{
+                JSONObject object = new JSONObject(startString);
+                Map<String, StringPair> map = JsonParser.parseObject(object);
+                if(map.containsKey("links")){
+                    String notice = map.get("links").getValue();
+                    Map<String, StringPair> innerMap = JsonParser.parseObject(new JSONObject(notice));
+                    if(innerMap.containsKey("href")){
+                        noticeurl = innerMap.get("href").getValue();
+                    }
+                }
+            }
+            catch (JSONException e){
+                ApplicationUtils.showToastMessage(context, R.string.error_generic, 10);
+            }
+        }
+	}
+	
+	
+}

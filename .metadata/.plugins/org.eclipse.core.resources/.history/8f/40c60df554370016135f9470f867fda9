@@ -1,0 +1,158 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/chargeback_frame"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/RequiredBackground"
+    android:foreground="@drawable/shape_background"
+    tools:context="com.app.jobapplication.activities.ChargebackActivity" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/chargeback_title"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="Medium Text"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <View
+		    android:layout_width="match_parent"
+		    android:layout_height="1dp"
+		    android:background="@android:color/darker_gray"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="61dp" >
+
+                <ImageView
+                    android:id="@+id/chargeback_padlock"
+                    android:layout_width="wrap_content"
+                    android:layout_height="28dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_chargeback_unlock" />
+
+                <TextView
+                    android:id="@+id/chargeback_lock_message"
+                    android:layout_width="266dp"
+                    android:layout_height="57dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/chargeback_card_unblocked"
+                    android:textColor="#d5171b" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="42dp" >
+
+                <TextView
+                    android:id="@+id/chargeback_reason1"
+                    android:layout_width="216dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center_vertical"
+                    android:text="TextView"
+                    android:textColor="@color/RequiredBlackTexts" />
+
+                <Switch
+                    android:id="@+id/reason_button1"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginRight="10dp"
+                    android:paddingRight="10dp"
+                    android:showText="false"
+                    android:thumb="@drawable/ic_btn_circle_normal"
+                    android:track="@drawable/ic_track_unselected" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="42dp" >
+
+                <TextView
+                    android:id="@+id/chargeback_reason2"
+                    android:layout_width="216dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center_vertical"
+                    android:text="TextView"
+                    android:textColor="@color/RequiredBlackTexts" />
+
+                <Switch
+                    android:id="@+id/reason_button2"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginRight="10dp"
+                    android:paddingRight="10dp"
+                    android:showText="false"
+                    android:thumb="@drawable/ic_btn_circle_normal"
+                    android:track="@drawable/ic_track_unselected" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray" />
+
+            <EditText
+                android:id="@+id/chargeback_comments"
+                android:layout_width="match_parent"
+                android:layout_height="219dp"
+                android:background="@android:drawable/editbox_background_normal"
+                android:ems="10"
+                android:gravity="top"
+                android:singleLine="false" >
+
+                <requestFocus />
+            </EditText>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="90dp" >
+
+                <TextView
+                    android:id="@+id/chargeback_cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="0.28"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="15dp"
+                    android:text="Medium Text"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#808191" />
+
+                <TextView
+                    android:id="@+id/chargeback_confirm"
+                    android:layout_width="156dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center_vertical|right"
+                    android:paddingRight="15dp"
+                    android:text="Medium Text"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#6e2b77" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

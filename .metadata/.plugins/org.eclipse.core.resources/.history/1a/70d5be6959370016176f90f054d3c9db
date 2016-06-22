@@ -1,0 +1,5 @@
+package com.app.jobapplication.utils;
+
+public class ConnectionDetector {
+
+}

@@ -30,7 +30,6 @@ public class JsonParser {
 				map.put(key, pair);
 			} catch (JSONException e) {
 				Log.e(LOG, "Error retrieving value from JSONObject");
-				e.printStackTrace();
 			}
 		}		
 		return map;
@@ -72,6 +71,26 @@ public class JsonParser {
 			}
 		}
 		return map;
+	}
+	
+	public static String getInnerUrl(String response){
+		JSONObject object;
+		try {
+			object = new JSONObject(response);
+			 Map<String, StringPair> map = JsonParser.parseObject(object);
+		        if(map.containsKey("links")){
+		            String links = map.get("links").getValue();
+		            Map<String, StringPair> innerMap = JsonParser.parse(new JSONObject(links));
+		            if(innerMap.containsKey("href")){
+		            	return innerMap.get("href").getValue();
+		            }
+		        }
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+       
+        return "";
 	}
 
 }

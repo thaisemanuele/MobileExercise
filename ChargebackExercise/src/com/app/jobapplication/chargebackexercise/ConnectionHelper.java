@@ -19,8 +19,6 @@ import android.util.Log;
 public class ConnectionHelper {
 	
 	private static final String BASE_URL = "https://nu-mobile-hiring.herokuapp.com";
-	private static final String NOTICE_URL = "https://nu-mobile-hiring.herokuapp.com/notice";
-	
 	private static final String ENCODING = "UTF-8";
 	private static final String LOG = "ConnectionHelper";
 	
@@ -37,23 +35,46 @@ public class ConnectionHelper {
 		return null;
 	}
 	
-	public static String getFromEndpoint(String url){
+	public static String getStream(String url) {
 		if(url.isEmpty()){
-			url = NOTICE_URL;
+			url = BASE_URL;
+			HttpsURLConnection connection = getConnection(url);
+			String retrieved = "";
+			if (connection != null) {
+				String messageString = "";
+				InputStream messageStream = null;
+				try {
+					messageStream = connection.getInputStream();
+					retrieved = IOUtils.toString(messageStream, ENCODING);
+	
+				} catch (IOException e) {
+					Log.e(LOG, "Error on retrieving inputStream: " + connection.getErrorStream());
+					return null;
+				}
+			}
+			String innerUrl = JsonParser.getInnerUrl(retrieved);
+			return getFromEndpoint(innerUrl);
 		}
+		else return getFromEndpoint(url);
+				
+	}
+	
+	public static String getFromEndpoint(String url){
 		HttpsURLConnection connection = getConnection(url);
 		if(connection!=null){
-			String messageString = "";
+			String retrieved = "";
 			InputStream messageStream = null;
 			try {
 				messageStream = connection.getInputStream();
-				messageString = IOUtils.toString(messageStream, ENCODING);
+				retrieved = IOUtils.toString(messageStream, ENCODING);
 			} catch (IOException e) {
 				Log.e(LOG, "Error on retrieving inputStream: "+connection.getErrorStream());
 				return null;
 			}
-			return messageString;
+			
+			return retrieved;
 		}
+		Log.e(LOG, "Unable to retrieve Input Stream");
 		return "";
 	}
 	

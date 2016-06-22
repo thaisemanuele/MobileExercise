@@ -8,8 +8,10 @@ import org.json.JSONObject;
 import com.app.jobapplication.chargebackexercise.ChargebackStarter;
 import com.app.jobapplication.chargebackexercise.R;
 import com.app.jobapplication.models.vo.NoticeVO;
+import com.app.jobapplication.utils.ApplicationUtils;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -24,13 +26,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 public class NoticeActivity extends Activity {
-	
+
+	private Context context;
 	private static final String LOG = "NoticeActivity";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_notice);
+		context = getApplicationContext();
 		if (savedInstanceState == null) {
 			
 			
@@ -69,11 +73,16 @@ public class NoticeActivity extends Activity {
 					try {
 						JSONObject chargeobject = jsonobject.getJSONObject("links").getJSONObject("chargeback");
 						String url = chargeobject.getString("href");
-						ChargebackStarter message = new ChargebackStarter();
-						message.startChargeback(url);
+						if(ApplicationUtils.checkConnection(context)){
+							ChargebackStarter message = new ChargebackStarter();
+							message.startChargeback(url);
+						}
+						else {
+							ApplicationUtils.showToastMessage(context, R.string.error_not_connected,10);
+						}
+
 					} catch (JSONException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+						ApplicationUtils.showToastMessage(context, R.string.error_generic,10);
 					}
 				}
 				

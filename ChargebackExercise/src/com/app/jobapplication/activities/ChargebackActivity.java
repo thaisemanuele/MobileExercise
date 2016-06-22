@@ -10,6 +10,7 @@ import com.app.jobapplication.chargebackexercise.OnComplete;
 import com.app.jobapplication.chargebackexercise.PostRequest;
 import com.app.jobapplication.chargebackexercise.R;
 import com.app.jobapplication.models.vo.ChargebackVO;
+import com.app.jobapplication.utils.ApplicationUtils;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -48,12 +49,13 @@ public class ChargebackActivity extends Activity {
 	
 	private ChargebackVO chargeback;
 	private PopupWindow popupLoader;
+	private Context context;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_chargeback);
-		//inflater= getLayoutInflater();
+		context = getApplicationContext();
 
 		String message = "";
 		Bundle extras = getIntent().getExtras();
@@ -241,7 +243,7 @@ public class ChargebackActivity extends Activity {
 				if(result){
 					showConfimationPopup();
 				}
-				else showToastMessage(R.string.error_request, 10);
+				else ApplicationUtils.showToastMessage(context,R.string.error_request, 10);
 			}
 		});
 		if(param!=null){
@@ -275,7 +277,7 @@ public class ChargebackActivity extends Activity {
 						msg.setText(R.string.chargeback_card_unblocked);
 					}
 				}
-				else showToastMessage(R.string.error_request, 10);
+				else ApplicationUtils.showToastMessage(context, R.string.error_request, 10);
 			}
 		});
 		if(!chargeback.getBlockStatus()){
@@ -347,10 +349,6 @@ public class ChargebackActivity extends Activity {
 		}
 	}
 	
-	protected void showToastMessage(int message, int duration){
-		Toast toast = Toast.makeText(getApplicationContext(), message, duration);
-		toast.show();
-	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
