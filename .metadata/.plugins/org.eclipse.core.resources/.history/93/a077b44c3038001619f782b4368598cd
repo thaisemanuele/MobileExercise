@@ -1,0 +1,50 @@
+package com.app.jobapplication.chargebackexercise;
+
+import com.app.jobapplication.activities.MainActivity;
+
+import android.app.Activity;
+import android.app.ProgressDialog;
+import android.os.AsyncTask;
+import android.util.Log;
+
+public class RetrieveStream extends AsyncTask<String, Integer, String>{
+	
+	private static final String LOG = "<Async>RetrieveStream";
+	private AsyncResponse response;
+	private Activity activity; 
+	
+	/**
+	 * Constructor
+	 * @param response
+	 */
+	public RetrieveStream(AsyncResponse response, Activity activity) {
+		super();
+		this.response = response;
+		this.activity = activity;
+	}
+	 @Override
+     protected void onPreExecute() {
+         super.onPreExecute();
+         ProgressDialog progDialog = new ProgressDialog(activity);
+         progDialog.setMessage("Loading...");
+         progDialog.setIndeterminate(false);
+         progDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+         progDialog.setCancelable(true);
+         progDialog.show();
+     }
+
+	@Override
+	public String doInBackground(String... params) {
+		
+		String noticeString = "";
+		noticeString = ConnectionHelper.getStream();
+		return noticeString;
+	}
+
+	protected void onPostExecute(String result) {
+        Log.d(LOG, "Finished ");
+        response.processFinish(result);
+        progDialog.dismiss();
+    }
+	
+}

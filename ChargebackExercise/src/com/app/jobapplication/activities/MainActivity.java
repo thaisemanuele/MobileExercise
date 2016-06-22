@@ -11,21 +11,26 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.PopupWindow;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
 	private Context context;
-    private String noticeurl;
-
+	private PopupWindow popupLoader;
+	private final int activityFrame = R.id.container;
+    
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		context = getApplicationContext();
-
+		popupLoader = new PopupWindow();
+		
 		final Boolean connected = ApplicationUtils.checkConnection(context);
 		if(!connected){
-			ApplicationUtils.showToastMessage(context, R.string.error_not_connected, 10);
+			ApplicationUtils.showToastMessage(context, R.string.error_not_connected, Toast.LENGTH_SHORT);
 		}
 
 		Button start = (Button)findViewById(R.id.start_button);
@@ -34,7 +39,7 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				if(ApplicationUtils.checkConnection(context)){
 					NoticeStarter message = new NoticeStarter();
-					message.startNotice("");
+					message.startNotice("", MainActivity.this);
 				}
 				else {
 					ApplicationUtils.showToastMessage(context, R.string.error_not_connected, 10);

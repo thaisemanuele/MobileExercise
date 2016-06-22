@@ -1,21 +1,38 @@
 package com.app.jobapplication.chargebackexercise;
 
+import com.app.jobapplication.activities.MainActivity;
+
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.util.Log;
 
 public class RetrieveStream extends AsyncTask<String, Integer, String>{
 	
 	private static final String LOG = "<Async>RetrieveStream";
-	private AsyncResponse response; 
+	private AsyncResponse response;
+	private Activity activity;
+	private ProgressDialog progress; 
 	
 	/**
 	 * Constructor
 	 * @param response
 	 */
-	public RetrieveStream(AsyncResponse response) {
+	public RetrieveStream(AsyncResponse response, Activity activity) {
 		super();
 		this.response = response;
+		this.activity = activity;
+		this.progress = new ProgressDialog(activity);
+        
 	}
+	 @Override
+     protected void onPreExecute() {
+         super.onPreExecute();
+         progress.setMessage("Carregando...");
+         progress.setIndeterminate(false);
+         progress.setCancelable(true);
+         progress.show();
+     }
 
 	@Override
 	public String doInBackground(String... params) {
@@ -28,6 +45,7 @@ public class RetrieveStream extends AsyncTask<String, Integer, String>{
 	protected void onPostExecute(String result) {
         Log.d(LOG, "Finished ");
         response.processFinish(result);
+        progress.dismiss();
     }
 	
 }

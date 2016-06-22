@@ -172,6 +172,14 @@ public class ChargebackActivity extends Activity {
 				postLockRequest((ImageView)v, true);
 			}
 		});
+		messageField.setOnClickListener(new OnClickListener() {
+			ImageView image = (ImageView) findViewById(R.id.chargeback_padlock);
+			@Override
+			public void onClick(View v) {
+				postLockRequest((ImageView)image, true);
+				
+			}
+		});
 		/*Creating ChargebackVO*/
 		chargeback = new ChargebackVO(jsonobject);
 		String formatted = String.format(
@@ -185,6 +193,7 @@ public class ChargebackActivity extends Activity {
 		confirmButton.setText(R.string.chargeback_confirm);
 		cancelButton.setText(R.string.chargeback_cancel);
 		
+		
 		/** Foreground  transparency*/
 		FrameLayout frame = (FrameLayout) findViewById( R.id.chargeback_frame);
 		frame.getForeground().setAlpha(0);
@@ -197,8 +206,7 @@ public class ChargebackActivity extends Activity {
 		
 		if(chargeback.isAutoblock()){
 			postLockRequest(lockImage, false);
-			//messageField.setText(R.string.chargeback_card_blocked);
-			//lockImage.setImageResource(R.drawable.ic_chargeback_lock);
+			
 		}
 		else {
 			messageField.setText(R.string.chargeback_card_unblocked);

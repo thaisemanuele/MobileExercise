@@ -3,6 +3,7 @@ package com.app.jobapplication.chargebackexercise;
 import com.app.JobApplication;
 import com.app.jobapplication.activities.NoticeActivity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
@@ -14,8 +15,7 @@ public class NoticeStarter {
 	 * StartNotice
 	 * SUCCESS: Receive the results of the Async Task and starts new activity 
 	 */
-	public void startNotice(String noticeurl){
-		
+	public void startNotice(String noticeurl, Activity activity){
 		RetrieveStream notice = new RetrieveStream(new AsyncResponse() {
 			
 			@Override
@@ -33,7 +33,7 @@ public class NoticeStarter {
 			}
 
 			
-		});
+		}, activity);
 		notice.execute(noticeurl);
 	}
 	

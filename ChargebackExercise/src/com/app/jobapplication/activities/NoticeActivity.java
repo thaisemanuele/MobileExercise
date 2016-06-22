@@ -24,6 +24,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class NoticeActivity extends Activity {
 
@@ -75,7 +76,7 @@ public class NoticeActivity extends Activity {
 						String url = chargeobject.getString("href");
 						if(ApplicationUtils.checkConnection(context)){
 							ChargebackStarter message = new ChargebackStarter();
-							message.startChargeback(url);
+							message.startChargeback(url, NoticeActivity.this);
 						}
 						else {
 							ApplicationUtils.showToastMessage(context, R.string.error_not_connected,10);

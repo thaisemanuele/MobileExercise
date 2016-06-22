@@ -3,6 +3,7 @@ package com.app.jobapplication.chargebackexercise;
 import com.app.JobApplication;
 import com.app.jobapplication.activities.ChargebackActivity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
@@ -14,7 +15,7 @@ public class ChargebackStarter {
 	 * StartChargeback
 	 * SUCCESS: Receive the results of the Async Task and starts new activity 
 	 */
-	public void startChargeback(String url){
+	public void startChargeback(String url, Activity activity){
 		
 		RetrieveChargebackStream charge = new RetrieveChargebackStream(new AsyncResponse() {
 			
@@ -32,7 +33,7 @@ public class ChargebackStarter {
 				
 			}
 			
-		});
+		}, activity);
 		charge.execute(url);
 	}
 	
