@@ -23,7 +23,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@android:color/darker_gray" />
+            android:background="@color/RequiredBackground" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -139,7 +139,7 @@
                     android:paddingLeft="15dp"
                     android:text="Medium Text"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="#808191" />
+                    android:textColor="@color/RequiredCloseGray" />
 
                 <TextView
                     android:id="@+id/chargeback_confirm"
@@ -151,9 +151,10 @@
                     android:layout_weight="0.35"
                     android:gravity="center_vertical|right|bottom"
                     android:paddingRight="15dp"
+                    android:clickable="false"
                     android:text="Medium Text"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="#6e2b77" />
+                    android:textColor="@color/RequiredDisabledGray" />
             </RelativeLayout>
         </LinearLayout>
     </LinearLayout>

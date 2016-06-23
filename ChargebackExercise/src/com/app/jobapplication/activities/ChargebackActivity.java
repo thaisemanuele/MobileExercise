@@ -1,5 +1,7 @@
 package com.app.jobapplication.activities;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Locale;
 
 import org.json.JSONArray;
@@ -20,7 +22,9 @@ import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.text.Editable;
 import android.text.Html;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -108,8 +112,29 @@ public class ChargebackActivity extends Activity {
 
 		/*TextView for the Confirm Button*/
 		TextView confirmButton = (TextView) this.findViewById(R.id.chargeback_confirm);
+		confirmButton.setEnabled(false);
 		
+		/*Creating Listeners*/
+		TextWatcher txwatch = new TextWatcher() {
+			
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
+				verifyEmptyField();
+			}
+			
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+				// TODO Auto-generated method stub
+			}
+			
+			@Override
+			public void afterTextChanged(Editable s) {
+				// TODO Auto-generated method stub
+			}
+		};
 		/*Setting Listeners*/
+		commentsField.addTextChangedListener(txwatch);
+		
 		if(primeSwitch.getTag()==null){
 			primeSwitch.setTag(false);
 		}
@@ -214,6 +239,19 @@ public class ChargebackActivity extends Activity {
 		}
 	}
 
+	protected void verifyEmptyField() {
+		EditText msgField = (EditText) findViewById(R.id.chargeback_comments);
+		TextView confirm = (TextView) this.findViewById(R.id.chargeback_confirm);
+		if (!msgField.getEditableText().toString().isEmpty()){
+			confirm.setTextColor(getResources().getColor(R.color.RequiredPurple));
+			confirm.setEnabled(true);
+		}
+		else {
+			confirm.setTextColor(getResources().getColor(R.color.RequiredDisabledGray));
+			confirm.setEnabled(false);
+		}
+	}
+
 	/**
 	 * Send POST Request for the Chargeback Action 
 	 * @param v
@@ -224,25 +262,21 @@ public class ChargebackActivity extends Activity {
 		EditText commentsField = (EditText) this.findViewById(R.id.chargeback_comments);
 		Switch primeSwitch = (Switch) this.findViewById(R.id.reason_button1);
 		Switch secondSwitch = (Switch) this.findViewById(R.id.reason_button2);
-
-		String comment = commentsField.getEditableText().toString();
-		JSONObject primeObj = new JSONObject();
-		JSONObject secondObj = new JSONObject();
-		JSONArray array = new JSONArray();
+		
+		/*Switch status*/
+		Boolean sw1 = Boolean.parseBoolean(primeSwitch.getTag().toString());
+		Boolean sw2 = Boolean.parseBoolean(secondSwitch.getTag().toString());
+		
+		/*JSON Object to send to the request*/
 		JSONObject param = new JSONObject();
 		
-		try {
-			
-			primeObj.put("merchant_recognized", primeSwitch.getTag().toString());
-			secondObj.put("card_in_possession", secondSwitch.getTag().toString());
-			array.put(primeObj);
-			array.put(secondObj);
-			param.put("comment", comment);
-			param.put("reason_details", array);
-			
-		} catch (JSONException e) {
-			Log.e(LOG, "Unable to contruct request body");
-		}
+		String comment = commentsField.getEditableText().toString();
+		ArrayList<HashMap<String, Boolean>> reasonArray = new ArrayList<HashMap<String, Boolean>>();
+		HashMap<String, Boolean> innerMap = new HashMap<String, Boolean>();
+		innerMap.put("merchant_recognized", sw1);
+		innerMap.put("card_in_possession", sw2);
+		reasonArray.add(innerMap);
+		param = ApplicationUtils.getJSONObject(comment, reasonArray);
 		
 		PostRequest post = new PostRequest(new OnComplete() {
 			@Override
