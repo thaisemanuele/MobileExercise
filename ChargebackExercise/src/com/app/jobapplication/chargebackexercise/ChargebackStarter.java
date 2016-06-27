@@ -15,8 +15,10 @@ public class ChargebackStarter {
 	private static final String LOG = "ChargebackStarter";
 
 	/**
-	 * StartChargeback SUCCESS: Receive the results of the Async Task and starts
-	 * new activity FAILURE: Notifies the user the request has failed
+	 * StartChargeback 
+	 * SUCCESS: Receive the results of the Async Task and starts
+	 * new activity 
+	 * FAILURE: Notifies the user the request has failed
 	 * 
 	 * @param context
 	 * @param title

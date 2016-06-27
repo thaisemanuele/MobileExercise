@@ -31,7 +31,7 @@ public class TransactionListAdapter extends ArrayAdapter<String> {
 
 	/*
 	 * This is the adapter constructor the lt contains the transactions and the
-	 * objects controls how many objects will be show
+	 * objects controls how many objects will be shown
 	 */
 	public TransactionListAdapter(Context context, int resource, int textViewResourceId, List<Transaction> lt,
 			List<String> objects) {

@@ -7,8 +7,8 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 /**
- * DoInBackground:Sends a post request to the server OnPostExecute: Updates the
- * result for the listener
+ * DoInBackground:Sends a post request to the server 
+ * OnPostExecute: Updates the result for the listener
  * 
  * @author Thais
  *

@@ -10,8 +10,9 @@ import android.util.Log;
 
 /**
  * Requests from the server the links to access the other endpoints on the app
- * onPreExecute: Show Progress Dialog doInBackground: Request information from
- * the server onPostExecute: Send the result and dismiss the progress dialog
+ * onPreExecute: Show Progress Dialog 
+ * doInBackground: Request information from the server 
+ * onPostExecute: Send the result and dismiss the progress dialog
  *
  * @author Thais
  *

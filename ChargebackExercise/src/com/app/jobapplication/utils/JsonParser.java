@@ -13,7 +13,7 @@ import com.app.jobapplication.helper.StringPair;
 import android.util.Log;
 
 /**
- * Class to handling JSON operations
+ * Class for handling JSON operations
  * 
  * @author Thais
  *
@@ -49,7 +49,7 @@ public class JsonParser {
 	}
 
 	/**
-	 * Parses a JSONObject containing another JSONObject insideinto a Map of
+	 * Parses a JSONObject containing another JSONObject inside into a Map of
 	 * <String(object key), StringPair(innerObject key and value)>
 	 * 
 	 * @param object

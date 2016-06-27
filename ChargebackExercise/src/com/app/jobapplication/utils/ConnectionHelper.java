@@ -42,8 +42,9 @@ public class ConnectionHelper {
 	/**
 	 * Gets the information from the BASE_URL
 	 * 
-	 * @return SUCCESS: Request the information from the inner URL FAILURE:
-	 *         Return null
+	 * @return 
+	 * SUCCESS: Request the information from the inner URL 
+	 * FAILURE: Return null
 	 */
 	public static String getStream() {
 		String url = BASE_URL;
@@ -69,8 +70,10 @@ public class ConnectionHelper {
 	 * Requests information from the URL passed as a parameter
 	 * 
 	 * @param url
-	 * @return SUCCESS: Returns the string with the information retrieved from
-	 *         the server FAILURE: Returns an empty string
+	 * @return 
+	 * SUCCESS: Returns the string with the information retrieved from
+	 * the server 
+	 * FAILURE: Returns an empty string
 	 */
 	public static String getFromEndpoint(String url) {
 		HttpsURLConnection connection = getConnection(url);

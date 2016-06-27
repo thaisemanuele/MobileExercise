@@ -15,8 +15,10 @@ public class NoticeStarter {
 	private static final String LOG = "NoticeStarter";
 
 	/**
-	 * StartNotice SUCCESS: Receive the results of the Async Task and starts new
-	 * activity FAILURE: Notifies the user the request has failed
+	 * StartNotice 
+	 * SUCCESS: Receive the results of the Async Task and starts new
+	 * activity 
+	 * FAILURE: Notifies the user the request has failed
 	 * 
 	 * @param context
 	 * @param title

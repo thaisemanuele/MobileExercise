@@ -70,7 +70,8 @@ public class ChargebackActivity extends Activity {
 			jsonobject = new JSONObject(message);
 		} catch (JSONException e) {
 			Log.e(LOG, "Error parsing " + message);
-			jsonobject = new JSONObject();
+			ApplicationUtils.showToastMessage(context, R.string.error_generic, Toast.LENGTH_SHORT);
+			finish();
 		}
 		Resources res = getResources();
 		fillChargebackScreen(res, jsonobject, title);
@@ -192,7 +193,7 @@ public class ChargebackActivity extends Activity {
 
 			}
 		});
-		/** Lock request is sent clicking on the padlock or on the message */
+		/** Lock request is sent by clicking on the padlock or on the message */
 		lockImage.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -342,7 +343,7 @@ public class ChargebackActivity extends Activity {
 	}
 
 	/**
-	 * Show confirmation popup after the submission is sent and th OK is
+	 * Show confirmation popup after the submission is sent and the OK is
 	 * received from the server
 	 */
 	protected void showConfimationPopup() {
