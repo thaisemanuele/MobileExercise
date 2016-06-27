@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rowFrame"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="2dp" >
+
+    <LinearLayout
+        android:id="@+id/row_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/text_container"
+            android:layout_width="match_parent"
+            android:layout_height="38dp" >
+
+            <TextView
+                android:id="@+id/transaction_title"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="5dp"
+                android:text="Medium Text"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColorLink="@color/RequiredPurple" />
+
+            <TextView
+                android:id="@+id/transaction_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right|center_vertical"
+                android:paddingRight="5dp"
+                android:text="Small Text"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColorLink="@color/RequiredBlackTexts"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/start_button"
+            android:layout_width="match_parent"
+            android:layout_height="41dp"
+            android:background="@color/RequiredPurple"
+            android:text="Contestar"
+            android:textColor="@color/RequiredBackground" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:background="@color/RequiredCloseGray" />
+
+    </LinearLayout>
+
+</FrameLayout>

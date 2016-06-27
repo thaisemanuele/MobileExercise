@@ -9,24 +9,44 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.app.jobapplication.activities.MainActivity;
+import com.app.jobapplication.chargebackexercise.R;
+
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.text.Html;
 import android.util.Log;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+
 /**
- * Created by Thais on 21/06/2016.
+ * General purposes methods shared by the entire application
+ * @author Thais
+ *
  */
 public class ApplicationUtils {
 	
 	private static final String LOG = "ApplicationUtils";
 
+    /**
+     * Shows a toast message within the context, showing the message for a certain duration
+     * @param context
+     * @param message
+     * @param duration
+     */
     public static void showToastMessage(Context context, int message, int duration){
         Toast toast = Toast.makeText(context, message, duration);
         toast.show();
     }
 
+    /**
+     * Checks if the device is connected somehow to the Internet
+     * @param context
+     * @return true/false
+     */
     public static Boolean checkConnection(Context context){
         ConnectionDetector detector= new ConnectionDetector(context);
         if (detector.isConnected()){
@@ -35,13 +55,6 @@ public class ApplicationUtils {
         else return false;
      }
     
-    public static void setForegroundAlpha(Activity activity, int frameId,int alpha) {
-		
-		FrameLayout frame = (FrameLayout) activity.findViewById( frameId);
-		frame.getForeground().setAlpha(alpha);
-		
-	}
-
 	/**
 	 * Constructs the JSONObject with the required structure,
 	 * "comment" -> String
@@ -75,6 +88,26 @@ public class ApplicationUtils {
 			Log.e(LOG, "Unable to contruct request body");
 		}
 		return null;
+	}
+	
+
+	/**
+	 * Method for displaying the about dialogue
+	 * @param activity
+	 */
+	public static void openAbout(Activity activity){
+		AlertDialog about = new AlertDialog.Builder(activity)
+	    .setTitle(activity.getString(R.string.action_about))
+	    .setMessage(""+(Html.fromHtml(activity.getString(R.string.formatted_about))))
+	    .setPositiveButton(R.string.chargeback_confirm_close, new DialogInterface.OnClickListener() {
+	        public void onClick(DialogInterface dialog, int which) {
+	        	// do nothing
+	        }
+	     })
+	    .create();
+	    if(!about.isShowing()){
+	    	about.show();
+	    }
 	}
 
 }

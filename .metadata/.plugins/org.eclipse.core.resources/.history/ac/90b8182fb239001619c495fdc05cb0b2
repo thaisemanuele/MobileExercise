@@ -1,0 +1,33 @@
+package com.app.jobapplication.models.vo;
+
+public class Transaction {
+	
+	private String title;
+	private String currency;
+	private String value;
+	private Boolean chargeback;
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getCurrency() {
+		return currency;
+	}
+	public void setCurrency(String currency) {
+		this.currency = currency;
+	}
+	public String getValue() {
+		return value;
+	}
+	public void setValue(String value) {
+		this.value = value;
+	}
+	public Boolean getChargeback() {
+		return chargeback;
+	}
+	public void setChargeback(Boolean chargeback) {
+		this.chargeback = chargeback;
+	}
+}

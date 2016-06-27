@@ -1,5 +1,10 @@
 package com.app.jobapplication.helper;
 
+/**
+ * key-value class to encapsulate information
+ * @author Thais
+ *
+ */
 public class StringPair {
 	
 	private String key;

@@ -7,8 +7,21 @@
     <string name="title_activity_notice">Notice</string>
     <string name="title_activity_chargeback">Chargeback</string>
     <string name="formatted_html">
-<![CDATA[
+	<![CDATA[
 		%1$s
+	]]>
+    </string>
+    <string name="formatted_about">
+	<![CDATA[
+		<div>Shopping bag icon made by 
+		<a href="http://www.flaticon.com/authors/gregor-cresnar" title="Gregor Cresnar">Gregor Cresnar</a> from 
+		<a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by 
+		<a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
+		</div>
+		<div>Other icons made by 
+		<a href="http://www.freepik.com" title="Freepik">Freepik</a> from 
+		<a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by 
+		<a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
 	]]>
     </string>
     <string name="chargeback_card_blocked">Bloqueamos preventivamente o seu cartão</string>
@@ -26,5 +39,6 @@
 	<string name="chargeback_confirm">CONTESTAR</string>
 	<string name="chargeback_confirm_close">FECHAR</string>
     <string name="start_chargeback">Start Chargeback</string>
+    <string name="action_about">Créditos</string>
 
 </resources>

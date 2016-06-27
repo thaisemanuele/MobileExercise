@@ -1,17 +1,26 @@
 package com.app.jobapplication.chargebackexercise;
 
-import com.app.jobapplication.activities.MainActivity;
+import com.app.jobapplication.interfaces.AsyncResponse;
+import com.app.jobapplication.utils.ConnectionHelper;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.util.Log;
 
+/**
+ * Requests from the server the links to access the other endpoints on the app
+ * onPreExecute: Show Progress Dialog
+ * doInBackground: Request information from the server
+ * onPostExecute: Send the result and dismiss the progress dialog
+ *
+ * @author Thais
+ *
+ */
 public class RetrieveStream extends AsyncTask<String, Integer, String>{
 	
 	private static final String LOG = "<Async>RetrieveStream";
 	private AsyncResponse response;
-	private Activity activity;
 	private ProgressDialog progress; 
 	
 	/**
@@ -21,7 +30,6 @@ public class RetrieveStream extends AsyncTask<String, Integer, String>{
 	public RetrieveStream(AsyncResponse response, Activity activity) {
 		super();
 		this.response = response;
-		this.activity = activity;
 		this.progress = new ProgressDialog(activity);
         
 	}

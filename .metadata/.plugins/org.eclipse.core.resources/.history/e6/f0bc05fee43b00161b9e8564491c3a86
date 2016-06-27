@@ -1,0 +1,13 @@
+package com.app.jobapplication.chargebackexercise;
+
+/**
+ * This interface is implemented by the class that needs a response from 
+ * processes running in concurrency. This one is used to show the results of
+ * the Post Request to submit the chargeback
+ * @author Thais
+ *
+ */
+public interface OnComplete {
+
+	void onComplete(Boolean result);
+}

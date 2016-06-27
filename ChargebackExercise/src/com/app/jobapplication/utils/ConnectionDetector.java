@@ -13,6 +13,10 @@ public class ConnectionDetector {
 		this.context = context;
 	}
 	
+	/**
+	 * Check whether the device is somehow connected
+	 * @return true/false
+	 */
 	public Boolean isConnected() {
 		ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 		if (!(cm == null)) {

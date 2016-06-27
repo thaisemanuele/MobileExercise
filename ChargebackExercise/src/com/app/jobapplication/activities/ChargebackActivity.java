@@ -8,9 +8,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.app.jobapplication.chargebackexercise.OnComplete;
 import com.app.jobapplication.chargebackexercise.PostRequest;
 import com.app.jobapplication.chargebackexercise.R;
+import com.app.jobapplication.interfaces.OnComplete;
 import com.app.jobapplication.models.vo.ChargebackVO;
 import com.app.jobapplication.utils.ApplicationUtils;
 
@@ -43,7 +43,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 /**
- * CkargebackActivity
+ * ChargebackActivity
+ * Activity for filling in the form and send 
+ * information about the chargeback request
  * @author Thais
  *
  */
@@ -62,9 +64,11 @@ public class ChargebackActivity extends Activity {
 		context = getApplicationContext();
 
 		String message = "";
+		String title = "";
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
 			message = extras.getString("jsonString");
+			title = extras.getCharSequence("title").toString();
 		}
 		JSONObject jsonobject = null;
 		try {
@@ -74,16 +78,17 @@ public class ChargebackActivity extends Activity {
 			jsonobject = new JSONObject();
 		}
 		Resources res = getResources();
-		fillChargebackScreen(res, jsonobject);
+		fillChargebackScreen(res, jsonobject, title);
 	}
 
 	/**
 	 * fillChargebackScreen
-	 * Set the correct values to appear on the screen 
+	 * Set the correct values to be shown on the screen 
 	 * @param res
 	 * @param jsonobject
+	 * @param title
 	 */
-	private void fillChargebackScreen(Resources res, JSONObject jsonobject) {
+	private void fillChargebackScreen(Resources res, JSONObject jsonobject, String title) {
 		
 		/*TextView to show title*/
 		TextView titleField = (TextView) this.findViewById(R.id.chargeback_title);
@@ -134,10 +139,16 @@ public class ChargebackActivity extends Activity {
 		};
 		/*Setting Listeners*/
 		commentsField.addTextChangedListener(txwatch);
-		
+		/**Initialising the switch widgets tag to indicate whether they display
+		 *  true(yes) or false(no) */
 		if(primeSwitch.getTag()==null){
 			primeSwitch.setTag(false);
 		}
+		if(secondSwitch.getTag()==null){
+			secondSwitch.setTag(false);
+		}
+		/*Setting Listeners*/
+		/**getColor deprecated for version 23, however, this app supports version 21*/
 		primeSwitch.setOnCheckedChangeListener(
 				new CompoundButton.OnCheckedChangeListener() {
 					public void onCheckedChanged(
@@ -155,9 +166,6 @@ public class ChargebackActivity extends Activity {
 						}
 		    }
 		});
-		if(secondSwitch.getTag()==null){
-			secondSwitch.setTag(false);
-		}
 		secondSwitch.setOnCheckedChangeListener(
 				new CompoundButton.OnCheckedChangeListener() {
 					public void onCheckedChanged(
@@ -176,7 +184,7 @@ public class ChargebackActivity extends Activity {
 		    }
 		});
 		cancelButton.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				finish();
@@ -190,6 +198,7 @@ public class ChargebackActivity extends Activity {
 				
 			}
 		});
+		/**Lock request is sent clicking on the padlock or on the message*/
 		lockImage.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -207,8 +216,10 @@ public class ChargebackActivity extends Activity {
 		});
 		/*Creating ChargebackVO*/
 		chargeback = new ChargebackVO(jsonobject);
+		String hint = chargeback.getCommentHint();
+		hint = hint.replace("Transaction", title);
 		String formatted = String.format(
-				res.getString(R.string.formatted_html), chargeback.getCommentHint());
+				res.getString(R.string.formatted_html), hint);
 		
 		/** Setting Views*/
 		titleField.setText(chargeback.getTitle().toUpperCase(Locale.getDefault()));
@@ -229,9 +240,9 @@ public class ChargebackActivity extends Activity {
 		popupLoader = new PopupWindow(loader,LayoutParams.WRAP_CONTENT,  
                 LayoutParams.WRAP_CONTENT);
 		
+		/**Send lock request if the autoblock message is sent from the server*/
 		if(chargeback.isAutoblock()){
-			postLockRequest(lockImage, false);
-			
+			postLockRequest(lockImage, false);	
 		}
 		else {
 			messageField.setText(R.string.chargeback_card_unblocked);
@@ -239,10 +250,14 @@ public class ChargebackActivity extends Activity {
 		}
 	}
 
+	/**
+	 * Verifies if the message to be sent with the chargeback request is empty.
+	 * if not, enable the button to submit the request
+	 */
 	protected void verifyEmptyField() {
 		EditText msgField = (EditText) findViewById(R.id.chargeback_comments);
 		TextView confirm = (TextView) this.findViewById(R.id.chargeback_confirm);
-		if (!msgField.getEditableText().toString().isEmpty()){
+		if (!msgField.getEditableText().toString().trim().isEmpty()){
 			confirm.setTextColor(getResources().getColor(R.color.RequiredPurple));
 			confirm.setEnabled(true);
 		}
@@ -285,12 +300,13 @@ public class ChargebackActivity extends Activity {
 				if(result){
 					showConfimationPopup();
 				}
-				else ApplicationUtils.showToastMessage(context,R.string.error_request, 10);
+				else ApplicationUtils.showToastMessage(context,R.string.error_request, Toast.LENGTH_SHORT);
 			}
 		});
 		if(param!=null){
 			post.execute(chargeback.getLinksbyKey("self"),param.toString());
 		}
+		else ApplicationUtils.showToastMessage(context,R.string.error_request, Toast.LENGTH_SHORT);
 		
 	}
 
@@ -331,6 +347,10 @@ public class ChargebackActivity extends Activity {
 		
 	}
 
+	/**
+	 * Show confirmation popup after the submission is sent
+	 * and th OK is received from the server
+	 */
 	protected void showConfimationPopup() {
 		
 		LayoutInflater l = getLayoutInflater();
@@ -383,6 +403,9 @@ public class ChargebackActivity extends Activity {
 	        popupLoader.showAtLocation(loader, Gravity.CENTER, 10, 10);
 		}
     }
+	/**
+	 * Dismiss the loading feature 
+	 */
 	protected void dismissLoading(){
 		if(popupLoader != null && popupLoader.isShowing()){
 			setForegroundAlpha(0);

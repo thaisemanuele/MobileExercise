@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rowFrame"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="2dp" >
+
+    <LinearLayout
+        android:id="@+id/row_container"
+        android:layout_width="match_parent"
+        android:layout_height="103dp"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/text_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <FrameLayout
+                android:id="@+id/image_frame"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <ImageView
+                    android:id="@+id/transaction_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_launcher" />
+
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/transaction_title"
+                android:layout_width="wrap_content"
+                android:layout_height="64dp"
+                android:layout_weight="0.13"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="5dp"
+                android:text="Medium Text"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColorLink="@color/RequiredPurple" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/view_price"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" >
+
+            <FrameLayout
+                android:layout_width="53dp"
+                android:layout_height="match_parent" >
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:background="@color/RequiredCloseGray" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/transaction_price"
+                android:layout_width="match_parent"
+                android:layout_height="28dp"
+                android:gravity="right|center_vertical"
+                android:paddingRight="5dp"
+                android:text="Small Text"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColorLink="@color/RequiredBlackTexts"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</FrameLayout>

@@ -1,7 +1,11 @@
 package com.app.jobapplication.activities;
 
-import com.app.jobapplication.chargebackexercise.NoticeStarter;
+import java.util.List;
+
 import com.app.jobapplication.chargebackexercise.R;
+import com.app.jobapplication.factory.TransactionFactory;
+import com.app.jobapplication.helper.TransactionListAdapter;
+import com.app.jobapplication.models.Transaction;
 import com.app.jobapplication.utils.ApplicationUtils;
 
 import android.app.Activity;
@@ -9,43 +13,38 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.FrameLayout;
-import android.widget.PopupWindow;
+import android.widget.ListView;
 import android.widget.Toast;
 
+/**
+ * MainActivity
+ * Displays a list of simulated transactions, 
+ * allowing the user to ask for a chargeback
+ * @author Thais
+ *
+ */
 public class MainActivity extends Activity {
 
 	private Context context;
-	private PopupWindow popupLoader;
-	private final int activityFrame = R.id.container;
-    
+	 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		context = getApplicationContext();
-		popupLoader = new PopupWindow();
-		
+		/*Checking the device's connection*/
 		final Boolean connected = ApplicationUtils.checkConnection(context);
 		if(!connected){
 			ApplicationUtils.showToastMessage(context, R.string.error_not_connected, Toast.LENGTH_SHORT);
 		}
-
-		Button start = (Button)findViewById(R.id.start_button);
-		start.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				if(ApplicationUtils.checkConnection(context)){
-					NoticeStarter message = new NoticeStarter();
-					message.startNotice("", MainActivity.this);
-				}
-				else {
-					ApplicationUtils.showToastMessage(context, R.string.error_not_connected, 10);
-				}
-			}
-		});
+		/*Showing the List of transactions*/
+		List<Transaction> transactions = TransactionFactory.getList();
+		List<String> titles = TransactionFactory.getTitles();
+		TransactionListAdapter adapter;
+        adapter = new TransactionListAdapter(MainActivity.this, R.layout.transaction_row,
+        			R.id.transaction_list, transactions, titles);
+        ListView transactionList = (ListView)findViewById(R.id.transaction_list);
+        transactionList.setAdapter(adapter);
 	}
 
 	@Override
@@ -64,6 +63,11 @@ public class MainActivity extends Activity {
 		if (id == R.id.action_settings) {
 			return true;
 		}
+		if (id == R.id.open_about) {
+			ApplicationUtils.openAbout(MainActivity.this);
+			return true;
+		}
+
 		return super.onOptionsItemSelected(item);
 	}
 

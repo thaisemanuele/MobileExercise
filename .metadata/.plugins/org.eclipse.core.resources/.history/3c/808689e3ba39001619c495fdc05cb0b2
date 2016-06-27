@@ -1,0 +1,11 @@
+package com.app.jobapplication.factory;
+
+import java.util.List;
+
+public class TransactionFactory {
+	
+	public static List getList(){
+		
+	}
+
+}

@@ -26,6 +26,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * Shows the Notice before allowing the user to access the Chargeback screen
+ * @author Thais
+ *
+ */
 public class NoticeActivity extends Activity {
 
 	private Context context;
@@ -40,23 +45,26 @@ public class NoticeActivity extends Activity {
 			
 			
 			String message = "";
+			String title = "";
 			Bundle extras = getIntent().getExtras(); 
    			if (extras != null) {
    				message = extras.getString("jsonString");
+   				title = extras.getCharSequence("title").toString();
    			}
    			JSONObject jsonobject = null;
    			try {
 				jsonobject = new JSONObject(message);
 				Resources res = getResources();
-				fillNoticeScreen(res, jsonobject);
+				fillNoticeScreen(res, jsonobject, title);
 			} catch (JSONException e) {
 				Log.e(LOG, "Error parsing "+message);
-				jsonobject = new JSONObject();
+				ApplicationUtils.showToastMessage(context, R.string.error_generic, Toast.LENGTH_SHORT);
+				finish();
 			}
 		}
 	}
 
-	private void fillNoticeScreen(Resources res, final JSONObject jsonobject) throws JSONException {
+	private void fillNoticeScreen(Resources res, final JSONObject jsonobject, final String title) throws JSONException {
 		
 		/*TextView to show notice title*/
 		TextView noticeTitle = (TextView)this.findViewById(R.id.notice_title);
@@ -76,7 +84,7 @@ public class NoticeActivity extends Activity {
 						String url = chargeobject.getString("href");
 						if(ApplicationUtils.checkConnection(context)){
 							ChargebackStarter message = new ChargebackStarter();
-							message.startChargeback(url, NoticeActivity.this);
+							message.startChargeback(url, NoticeActivity.this, context, title);
 						}
 						else {
 							ApplicationUtils.showToastMessage(context, R.string.error_not_connected,10);

@@ -6,8 +6,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.app.jobapplication.chargebackexercise.JsonParser;
 import com.app.jobapplication.helper.StringPair;
+import com.app.jobapplication.utils.JsonParser;
 
 import android.util.Log;
 
@@ -24,6 +24,10 @@ public class ChargebackVO {
 	private static final String LOG = "ChargebackVO";
 
 	
+	/**
+	 * Stores all the information needed to fill up the chargeback screen 
+	 * @param object
+	 */
 	public ChargebackVO(JSONObject object){
 		
 		try {

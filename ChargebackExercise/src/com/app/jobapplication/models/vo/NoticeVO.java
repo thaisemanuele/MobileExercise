@@ -5,8 +5,8 @@ import java.util.Map;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.app.jobapplication.chargebackexercise.JsonParser;
 import com.app.jobapplication.helper.StringPair;
+import com.app.jobapplication.utils.JsonParser;
 
 import android.util.Log;
 
@@ -20,6 +20,10 @@ public class NoticeVO {
 	
 	private static final String LOG = "NoticeVO";
 	
+	/**
+	 * Stores all the information needed to fill up the notice screen
+	 * @param object
+	 */
 	public NoticeVO(JSONObject object){
 		
 		try {

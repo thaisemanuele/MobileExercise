@@ -1,22 +1,10 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ListView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
+    android:id="@+id/transaction_list"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/RequiredPurple"
+    android:background="@color/RequiredBackground"
     tools:context="com.app.jobapplication.activities.MainActivity"
     tools:ignore="MergeRootFrame" >
 
-    <Button
-        android:id="@+id/start_button"
-        android:layout_width="153dp"
-        android:layout_height="79dp"
-        android:layout_gravity="center_horizontal|center_vertical"
-        android:background="@color/RequiredPurple"
-        android:ellipsize="none"
-        android:text="@string/chargeback_confirm"
-        android:textColor="@color/RequiredBackground"
-        android:textSize="20sp" />
-
-</FrameLayout>
-
+</ListView>
