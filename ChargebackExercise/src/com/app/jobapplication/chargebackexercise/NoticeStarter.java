@@ -11,26 +11,25 @@ import android.content.Intent;
 import android.widget.Toast;
 
 public class NoticeStarter {
-	
+
 	private static final String LOG = "NoticeStarter";
-	
+
 	/**
-	 * StartNotice
-	 * SUCCESS: Receive the results of the Async Task and starts new activity 
-	 * FAILURE: Notifies the user the request has failed
-	 * @param context 
-	 * @param title 
+	 * StartNotice SUCCESS: Receive the results of the Async Task and starts new
+	 * activity FAILURE: Notifies the user the request has failed
+	 * 
+	 * @param context
+	 * @param title
 	 */
-	public void startNotice(String noticeurl, Activity activity, final Context context, final CharSequence title){
+	public void startNotice(String noticeurl, Activity activity, final Context context, final CharSequence title) {
 		RetrieveStream notice = new RetrieveStream(new AsyncResponse() {
-			
+
 			@Override
 			public void processFinish(String result) {
-				if(result != null){
+				if (result != null) {
 					String noticeString = result;
 					startNoticeActivity(noticeString, title);
-				}
-				else {
+				} else {
 					ApplicationUtils.showToastMessage(context, R.string.error_request, Toast.LENGTH_SHORT);
 				}
 			}
@@ -39,25 +38,25 @@ public class NoticeStarter {
 			public void processFinish(Boolean result) {
 			}
 
-			
 		}, activity);
 		notice.execute(noticeurl);
 	}
-	
+
 	/**
 	 * StartNoticeActivity
+	 * 
 	 * @param result
-	 * @param title 
+	 * @param title
 	 */
 	private void startNoticeActivity(String result, CharSequence title) {
-		
+
 		Context context = JobApplication.getAppContext();
 		Intent intent = new Intent(context, NoticeActivity.class);
 		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		intent.putExtra("jsonString", result);
 		intent.putExtra("title", title);
 		context.startActivity(intent);
-		
+
 	}
-	
+
 }

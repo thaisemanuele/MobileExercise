@@ -17,27 +17,28 @@ public class NoticeVO {
 	private Map<String, StringPair> primary;
 	private Map<String, StringPair> secondary;
 	private Map<String, StringPair> links;
-	
+
 	private static final String LOG = "NoticeVO";
-	
+
 	/**
 	 * Stores all the information needed to fill up the notice screen
+	 * 
 	 * @param object
 	 */
-	public NoticeVO(JSONObject object){
-		
+	public NoticeVO(JSONObject object) {
+
 		try {
-			
+
 			this.title = object.getString("title");
 			this.description = object.getString("description");
 			this.primary = JsonParser.parse(object.getJSONObject("primary_action"));
 			this.secondary = JsonParser.parse(object.getJSONObject("secondary_action"));
 			this.links = JsonParser.parseObject(object.getJSONObject("links"));
-			
+
 		} catch (JSONException e) {
 			Log.e(LOG, "Error parsing JSON");
 		}
-		
+
 	}
 
 	public String getTitle() {
@@ -47,24 +48,24 @@ public class NoticeVO {
 	public String getDescription() {
 		return description;
 	}
-	
-	public String getPrimaryKey(String key){
+
+	public String getPrimaryKey(String key) {
 		return this.primary.get(key).getKey();
 	}
 
-	public String getPrimarybyKey(String key){
+	public String getPrimarybyKey(String key) {
 		return this.primary.get(key).getValue();
 	}
-	
-	public String getSecondaryKey(String key){
+
+	public String getSecondaryKey(String key) {
 		return this.secondary.get(key).getKey();
 	}
-	
-	public String getSecondarybyKey(String key){
+
+	public String getSecondarybyKey(String key) {
 		return this.secondary.get(key).getValue();
 	}
 
-	public String getLinksbyKey(String key){
+	public String getLinksbyKey(String key) {
 		return this.links.get(key).getValue();
 	}
 

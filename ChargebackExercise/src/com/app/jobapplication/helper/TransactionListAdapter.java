@@ -14,13 +14,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 /**
  * List Adapter for the simulated list of transactions
+ * 
  * @author Thais
  *
  */
@@ -47,46 +47,47 @@ public class TransactionListAdapter extends ArrayAdapter<String> {
 		View rowView = inflater.inflate(R.layout.transaction_row, parent, false);
 		TextView place = (TextView) rowView.findViewById(R.id.transaction_title);
 		TextView price = (TextView) rowView.findViewById(R.id.transaction_price);
-		ImageView image = (ImageView)rowView.findViewById(R.id.transaction_image);
-		LinearLayout container = (LinearLayout)rowView.findViewById(R.id.row_container);
-		
+		ImageView image = (ImageView) rowView.findViewById(R.id.transaction_image);
+		LinearLayout container = (LinearLayout) rowView.findViewById(R.id.row_container);
+
 		String store = transactionList.get(position).getStore();
 		String value = transactionList.get(position).getCurrency() + "" + transactionList.get(position).getValue();
 		place.setText(store);
 		price.setText(value);
 		image.setImageResource(getImageByCategory(position));
-		
-		
+
 		final CharSequence title = place.getText();
-		/*Listener for starting the chargeback process when the transaction is clicked*/
+		/*
+		 * Listener for starting the chargeback process when the transaction is
+		 * clicked
+		 */
 		container.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				if(ApplicationUtils.checkConnection(context)){
+				if (ApplicationUtils.checkConnection(context)) {
 					NoticeStarter message = new NoticeStarter();
-					message.startNotice("",((MainActivity)context), context, title);
-				}
-				else {
+					message.startNotice("", ((MainActivity) context), context, title);
+				} else {
 					ApplicationUtils.showToastMessage(context, R.string.error_not_connected, 10);
 				}
 			}
 		});
 		return rowView;
 	}
-	
+
 	/**
-	 * Some categories to be shown with the transaction
-	 * the shopping_bag will be returned in case there are no matching categories
+	 * Some categories to be shown with the transaction the shopping_bag will be
+	 * returned in case there are no matching categories
+	 * 
 	 * @param position
 	 * @return
 	 */
-	protected int getImageByCategory(int position){
+	protected int getImageByCategory(int position) {
 		String category = transactionList.get(position).getCategory();
-		if(("roupas").equalsIgnoreCase(category)){
+		if (("roupas").equalsIgnoreCase(category)) {
 			return R.drawable.ic_wedding_suit;
-		}
-		else if(("eletronicos").equalsIgnoreCase(category)){
-			return R.drawable.ic_smartphone; 
+		} else if (("eletronicos").equalsIgnoreCase(category)) {
+			return R.drawable.ic_smartphone;
 		}
 		return R.drawable.ic_shopping_bag;
 	}

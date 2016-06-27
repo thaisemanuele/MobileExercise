@@ -6,26 +6,26 @@ import java.util.List;
 import com.app.jobapplication.models.Transaction;
 
 /**
- * Sends to the first screen mock transactions
- * to simulate the user's purchases
+ * Sends to the first screen mock transactions to simulate the user's purchases
+ * 
  * @author Thais
  *
  */
 public class TransactionFactory {
-	
-	public static List<Transaction> getList(){
+
+	public static List<Transaction> getList() {
 		List<Transaction> transactions = new ArrayList<Transaction>();
-		transactions.add(new Transaction("Apple Store","R$","2600,00",false,"eletronicos"));
-		transactions.add(new Transaction("Forever 21","R$","200,00",false,"roupas"));
-		transactions.add(new Transaction("Primark","£","260,00",false,"roupas"));
-		transactions.add(new Transaction("Apple Store","$","600,00",false,"eletronicos"));
-		transactions.add(new Transaction("C&A","R$","160,00",false,"roupas"));
-		transactions.add(new Transaction("Marks & Spencer","£","500,00",false,"roupas"));
-		transactions.add(new Transaction("Lilly Adams","R$","1600,00",false,"general"));
+		transactions.add(new Transaction("Apple Store", "R$", "2600,00", false, "eletronicos"));
+		transactions.add(new Transaction("Forever 21", "R$", "200,00", false, "roupas"));
+		transactions.add(new Transaction("Primark", "£", "260,00", false, "roupas"));
+		transactions.add(new Transaction("Apple Store", "$", "600,00", false, "eletronicos"));
+		transactions.add(new Transaction("C&A", "R$", "160,00", false, "roupas"));
+		transactions.add(new Transaction("Marks & Spencer", "£", "500,00", false, "roupas"));
+		transactions.add(new Transaction("Lilly Adams", "R$", "1600,00", false, "general"));
 		return transactions;
 	}
-	
-	public static List<String> getTitles(){
+
+	public static List<String> getTitles() {
 		List<String> titles = new ArrayList<String>();
 		titles.add("Apple Store");
 		titles.add("Forever 21");

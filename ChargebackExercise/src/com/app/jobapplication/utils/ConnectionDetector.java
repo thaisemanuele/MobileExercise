@@ -6,15 +6,16 @@ import android.net.Network;
 import android.net.NetworkInfo;
 
 public class ConnectionDetector {
-	
+
 	private Context context;
-	
-	public ConnectionDetector(Context context){
+
+	public ConnectionDetector(Context context) {
 		this.context = context;
 	}
-	
+
 	/**
 	 * Check whether the device is somehow connected
+	 * 
 	 * @return true/false
 	 */
 	public Boolean isConnected() {

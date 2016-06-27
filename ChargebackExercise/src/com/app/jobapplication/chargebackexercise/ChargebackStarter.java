@@ -11,27 +11,26 @@ import android.content.Intent;
 import android.widget.Toast;
 
 public class ChargebackStarter {
-	
+
 	private static final String LOG = "ChargebackStarter";
-	
+
 	/**
-	 * StartChargeback
-	 * SUCCESS: Receive the results of the Async Task and starts new activity 
-	 * FAILURE: Notifies the user the request has failed
-	 * @param context 
-	 * @param title 
+	 * StartChargeback SUCCESS: Receive the results of the Async Task and starts
+	 * new activity FAILURE: Notifies the user the request has failed
+	 * 
+	 * @param context
+	 * @param title
 	 */
-	public void startChargeback(String url, Activity activity, final Context context, final String title){
-		
+	public void startChargeback(String url, Activity activity, final Context context, final String title) {
+
 		RetrieveChargebackStream charge = new RetrieveChargebackStream(new AsyncResponse() {
-			
+
 			@Override
 			public void processFinish(String result) {
-				if(result != null && !result.isEmpty()){
+				if (result != null && !result.isEmpty()) {
 					String chargeString = result;
 					startChargebackActivity(chargeString, title);
-				}
-				else {
+				} else {
 					ApplicationUtils.showToastMessage(context, R.string.error_request, Toast.LENGTH_SHORT);
 				}
 			}
@@ -39,25 +38,26 @@ public class ChargebackStarter {
 			@Override
 			public void processFinish(Boolean result) {
 			}
-			
+
 		}, activity);
 		charge.execute(url);
 	}
-	
+
 	/**
 	 * StartChargebackActivity
+	 * 
 	 * @param result
-	 * @param title 
+	 * @param title
 	 */
 	private void startChargebackActivity(String result, String title) {
-		
+
 		Context context = JobApplication.getAppContext();
 		Intent intent = new Intent(context, ChargebackActivity.class);
 		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		intent.putExtra("jsonString", result);
 		intent.putExtra("title", title);
 		context.startActivity(intent);
-		
+
 	}
-	
+
 }

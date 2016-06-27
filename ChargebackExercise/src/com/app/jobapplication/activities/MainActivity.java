@@ -17,34 +17,34 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 /**
- * MainActivity
- * Displays a list of simulated transactions, 
- * allowing the user to ask for a chargeback
+ * MainActivity Displays a list of simulated transactions, allowing the user to
+ * ask for a chargeback
+ * 
  * @author Thais
  *
  */
 public class MainActivity extends Activity {
 
 	private Context context;
-	 
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		context = getApplicationContext();
-		/*Checking the device's connection*/
+		/* Checking the device's connection */
 		final Boolean connected = ApplicationUtils.checkConnection(context);
-		if(!connected){
+		if (!connected) {
 			ApplicationUtils.showToastMessage(context, R.string.error_not_connected, Toast.LENGTH_SHORT);
 		}
-		/*Showing the List of transactions*/
+		/* Showing the List of transactions */
 		List<Transaction> transactions = TransactionFactory.getList();
 		List<String> titles = TransactionFactory.getTitles();
 		TransactionListAdapter adapter;
-        adapter = new TransactionListAdapter(MainActivity.this, R.layout.transaction_row,
-        			R.id.transaction_list, transactions, titles);
-        ListView transactionList = (ListView)findViewById(R.id.transaction_list);
-        transactionList.setAdapter(adapter);
+		adapter = new TransactionListAdapter(MainActivity.this, R.layout.transaction_row, R.id.transaction_list,
+				transactions, titles);
+		ListView transactionList = (ListView) findViewById(R.id.transaction_list);
+		transactionList.setAdapter(adapter);
 	}
 
 	@Override
